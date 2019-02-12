@@ -478,7 +478,7 @@ public abstract class DrawerActivity extends ToolbarActivity
             case R.id.nav_logout:
                 mCheckedMenuItem = -1;
                 menuItem.setChecked(false);
-                UserInfoViewModel.openAccountRemovalConfirmationDialog(getAccount(), getFragmentManager(), true);
+                UserInfoViewModel.openAccountRemovalConfirmationDialog(getAccount(), getSupportFragmentManager(), true);
                 break;
             case R.id.nav_recently_added:
                 handleSearchEvents(new SearchEvent("%", SearchRemoteOperation.SearchType.CONTENT_TYPE_SEARCH,
