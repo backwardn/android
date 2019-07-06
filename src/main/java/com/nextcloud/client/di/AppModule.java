@@ -22,9 +22,11 @@ package com.nextcloud.client.di;
 
 import android.accounts.AccountManager;
 import android.app.Application;
+import android.app.NotificationManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
+import android.media.AudioManager;
 
 import com.nextcloud.client.account.CurrentAccountProvider;
 import com.nextcloud.client.account.UserAccountManager;
@@ -103,5 +105,15 @@ class AppModule {
     @Provides
     DeviceInfo deviceInfo() {
         return new DeviceInfo();
+    }
+
+    @Provides
+    NotificationManager notificationManager(Context context) {
+        return (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
+    }
+
+    @Provides
+    AudioManager audioManager(Context context) {
+        return (AudioManager)context.getSystemService(Context.AUDIO_SERVICE);
     }
 }
