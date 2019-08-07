@@ -136,7 +136,6 @@ public class SettingsActivity extends PreferenceActivity
     @SuppressWarnings("deprecation")
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         if (ThemeUtils.themingEnabled(this)) {
             setTheme(R.style.FallbackThemingTheme);
         }
@@ -361,7 +360,7 @@ public class SettingsActivity extends PreferenceActivity
         if (pLogger != null) {
             if (loggerEnabled) {
                 pLogger.setOnPreferenceClickListener(preference -> {
-                    Intent loggerIntent = new Intent(getApplicationContext(), LogHistoryActivity.class);
+                    Intent loggerIntent = new Intent(getApplicationContext(), LogsActivity.class);
                     startActivity(loggerIntent);
 
                     return true;

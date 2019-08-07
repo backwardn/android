@@ -79,6 +79,7 @@
     <string name="auto_upload_path">/AutoUpload</string>
     <string name="autoupload_create_new_custom_folder">新しいカスタムフォルダセットアップを作成する</string>
     <string name="autoupload_custom_folder">カスタムフォルダを設定する</string>
+    <string name="autoupload_disable_power_save_check">省電力チェックを無効化</string>
     <string name="avatar">アバター</string>
     <string name="battery_optimization_close">閉じる</string>
     <string name="battery_optimization_disable">無効</string>
@@ -110,6 +111,7 @@
     <string name="common_rename">名前を変更</string>
     <string name="common_save">保存</string>
     <string name="common_send">送信</string>
+    <string name="common_share">共有</string>
     <string name="common_switch_account">アカウント変更</string>
     <string name="common_unknown">不明</string>
     <string name="common_yes">はい</string>
@@ -225,9 +227,11 @@
     <string name="error__upload__local_file_not_copied">%1$s は、ローカルフォルダー %2$s  にコピーできませんでした。</string>
     <string name="error_cant_bind_to_operations_service">致命的なエラー：操作を実行できません</string>
     <string name="error_comment_file">コメントファイルのエラー</string>
+    <string name="error_report_issue_action">報告</string>
     <string name="error_retrieving_file">ファイルの取得中にエラーが発生しました</string>
     <string name="error_retrieving_templates">テンプレートの取得中にエラーが発生しました</string>
     <string name="error_starting_direct_camera_upload">カメラ起動エラー</string>
+    <string name="etm_preferences">環境設定</string>
     <string name="fab_label">追加またはアップロード</string>
     <string name="failed_to_download">ダウンロードマネージャーにファイルを渡せませんでした</string>
     <string name="fallback_weblogin_back">戻る</string>
@@ -446,6 +450,8 @@
     <string name="placeholder_media_time">12:23:45</string>
     <string name="placeholder_sentence">これはプレースホルダです</string>
     <string name="placeholder_timestamp">2012/05/18 PM 12:23</string>
+    <string name="power_check_dialog_title">省電力チェックを無効化</string>
+    <string name="power_save_check_dialog_message">省電力チェックを無効にすると、バッテリー残量が少ないときにもファイルのアップロードを行う場合があります！</string>
     <string name="pref_behaviour_entries_delete_file">削除しました</string>
     <string name="pref_behaviour_entries_keep_file">元のフォルダーに保持</string>
     <string name="pref_behaviour_entries_move">アプリフォルダーに移動</string>
