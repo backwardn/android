@@ -4,7 +4,6 @@ import android.accounts.Account;
 
 import com.owncloud.android.MainApp;
 import com.owncloud.android.datamodel.UserInfo;
-import com.owncloud.android.datamodel.UserInfoDatabase;
 import com.owncloud.android.repository.UserInfoRepository;
 import com.owncloud.android.ui.dialog.AccountRemovalConfirmationDialog;
 import com.owncloud.android.ui.events.TokenPushEvent;

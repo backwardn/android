@@ -3,7 +3,6 @@ package com.owncloud.android.repository;
 import android.accounts.Account;
 import android.content.Context;
 
-import com.owncloud.android.datamodel.UserInfoDao;
 import com.owncloud.android.lib.common.UserInfo;
 import com.owncloud.android.lib.common.operations.RemoteOperation;
 import com.owncloud.android.lib.common.operations.RemoteOperationResult;

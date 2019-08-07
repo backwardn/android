@@ -2,20 +2,16 @@ package com.owncloud.android.repository;
 
 import android.accounts.Account;
 
-import com.owncloud.android.datamodel.UserInfoDao;
 import com.owncloud.android.lib.common.UserInfo;
 import com.owncloud.android.lib.common.operations.RemoteOperation;
 import com.owncloud.android.lib.common.operations.RemoteOperationResult;
-import com.owncloud.android.lib.resources.users.GetRemoteUserInfoOperation;
+import com.owncloud.android.lib.resources.users.GetUserInfoRemoteOperation;
 
 import java.util.concurrent.Executor;
 
 import androidx.lifecycle.LiveData;
 
-// @Singleton // TODO use dagger 2
 public class UserInfoRepository {
-
-    private final UserInfoDao userInfoDao;
     private final Executor executor;
 
     // @Inject
@@ -35,7 +31,7 @@ public class UserInfoRepository {
             // TODO load from server only if force refresh or older than 5min
             // userInfoDao.hasUserInfo()
 
-            RemoteOperation getRemoteUserInfoOperation = new GetRemoteUserInfoOperation();
+            RemoteOperation getRemoteUserInfoOperation = new GetUserInfoRemoteOperation();
 
             // TODO how to get client better
             Invoker invoker = new Invoker();

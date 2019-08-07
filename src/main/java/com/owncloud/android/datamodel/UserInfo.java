@@ -7,13 +7,8 @@ import com.owncloud.android.lib.common.Quota;
 import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
-@Entity
 public class UserInfo {
-    @PrimaryKey
-    @NonNull
     public String account = "";
     public Boolean enabled;
     public String displayName;
