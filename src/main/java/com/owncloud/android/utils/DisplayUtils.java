@@ -65,7 +65,7 @@ import com.owncloud.android.datamodel.ThumbnailsCacheManager;
 import com.owncloud.android.lib.common.OwnCloudAccount;
 import com.owncloud.android.lib.common.Quota;
 import com.owncloud.android.lib.common.utils.Log_OC;
-import com.owncloud.android.lib.resources.users.GetRemoteUserInfoOperation;
+import com.owncloud.android.lib.resources.users.GetUserInfoRemoteOperation;
 import com.owncloud.android.ui.TextDrawable;
 import com.owncloud.android.ui.activity.FileDisplayActivity;
 import com.owncloud.android.ui.events.SearchEvent;
@@ -745,7 +745,7 @@ public final class DisplayUtils {
         final long total = quota.getTotal();
         final int relative = (int) Math.ceil(quota.getRelative());
 
-        if (GetRemoteUserInfoOperation.SPACE_UNLIMITED == quota.getQuota()) {
+        if (GetUserInfoRemoteOperation.SPACE_UNLIMITED == quota.getQuota()) {
             quotaTextPercentage.setText(String.format(activity.getString(R.string.drawer_quota_unlimited),
                 bytesToHumanReadable(used)));
         } else {

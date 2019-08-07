@@ -41,6 +41,7 @@ import com.nextcloud.client.logger.LoggerImpl;
 import com.nextcloud.client.logger.LogsRepository;
 import com.owncloud.android.datamodel.ArbitraryDataProvider;
 import com.owncloud.android.datamodel.UploadsStorageManager;
+import com.owncloud.android.repository.UserInfoRepository;
 import com.owncloud.android.ui.activities.data.activities.ActivitiesRepository;
 import com.owncloud.android.ui.activities.data.activities.ActivitiesServiceApi;
 import com.owncloud.android.ui.activities.data.activities.ActivitiesServiceApiImpl;
@@ -48,8 +49,11 @@ import com.owncloud.android.ui.activities.data.activities.RemoteActivitiesReposi
 import com.owncloud.android.ui.activities.data.files.FilesRepository;
 import com.owncloud.android.ui.activities.data.files.FilesServiceApiImpl;
 import com.owncloud.android.ui.activities.data.files.RemoteFilesRepository;
+import com.owncloud.android.ui.viewModel.UserInfoViewModel;
 
 import java.io.File;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import javax.inject.Singleton;
 
@@ -145,5 +149,22 @@ class AppModule {
     AsyncRunner asyncRunner() {
         Handler uiHandler = new Handler();
         return new AsyncRunnerImpl(uiHandler, 4);
+    }
+
+    @Provides
+    public Executor executor() {
+        return Executors.newCachedThreadPool();
+    }
+
+
+    @Provides
+    public UserInfoViewModel userInfoViewModel() {
+        return new UserInfoViewModel();
+    }
+
+    @Singleton
+    @Provides
+    UserInfoRepository userInfoRepository(Executor executor) {
+        return new UserInfoRepository(executor);
     }
 }

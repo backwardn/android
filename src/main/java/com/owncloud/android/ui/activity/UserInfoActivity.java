@@ -51,7 +51,7 @@ import com.owncloud.android.R;
 import com.owncloud.android.datamodel.UserInfo;
 import com.owncloud.android.lib.common.utils.Log_OC;
 import com.owncloud.android.lib.resources.users.GetUserInfoRemoteOperation;
-import com.owncloud.android.ui.events.TokenPushEvent;
+import com.owncloud.android.repository.UserInfoRepository;
 import com.owncloud.android.ui.adapter.UserInfoAdapter;
 import com.owncloud.android.ui.components.UserInfoDetailsItem;
 import com.owncloud.android.ui.viewModel.UserInfoViewModel;
@@ -127,6 +127,8 @@ public class UserInfoActivity extends FileActivity implements Injectable {
     private UserInfoAdapter adapter;
     private @ColorRes int primaryColor;
 
+    @Inject UserInfoRepository userInfoRepository;
+
     // TODO all operations in library: Remote prefix!
 
     @Override
@@ -144,7 +146,7 @@ public class UserInfoActivity extends FileActivity implements Injectable {
         primaryColor = ThemeUtils.primaryColor(account, true, this);
 
         UserInfoViewModel viewModel = ViewModelProviders.of(this).get(UserInfoViewModel.class);
-        viewModel.init(account);
+        viewModel.init(account, userInfoRepository, getUserAccountManager());
 
         mCurrentAccountAvatarRadiusDimension = getResources().getDimension(R.dimen.nav_drawer_header_avatar_radius);
 
@@ -289,8 +291,8 @@ public class UserInfoActivity extends FileActivity implements Injectable {
             R.string.user_info_groups);
 
         long quotaValue = userInfo.getQuota().getQuota();
-        if (quotaValue > 0 || quotaValue == GetRemoteUserInfoOperation.SPACE_UNLIMITED
-            || quotaValue == GetRemoteUserInfoOperation.QUOTA_LIMIT_INFO_NOT_AVAILABLE) {
+        if (quotaValue > 0 || quotaValue == GetUserInfoRemoteOperation.SPACE_UNLIMITED
+            || quotaValue == GetUserInfoRemoteOperation.QUOTA_LIMIT_INFO_NOT_AVAILABLE) {
 
             DisplayUtils.setQuotaInformation(quotaProgressBar, quotaPercentage, userInfo.getQuota(), this);
             ThemeUtils.tintDrawable(quotaIcon.getDrawable(), primaryColor);
