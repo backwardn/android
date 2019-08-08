@@ -15,14 +15,14 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class UserInfoAdapter extends RecyclerView.Adapter<UserInfoAdapter.ViewHolder> {
-    private List<UserInfoDetailsItem> mDisplayList;
+    private List<UserInfoDetailsItem> displayList;
 
     public UserInfoAdapter(List<UserInfoDetailsItem> displayList) {
-        mDisplayList = displayList == null ? new LinkedList<>() : displayList;
+        this.displayList = displayList == null ? new LinkedList<>() : displayList;
     }
 
     public void setData(List<UserInfoDetailsItem> displayList) {
-        mDisplayList = displayList == null ? new LinkedList<>() : displayList;
+        this.displayList = displayList == null ? new LinkedList<>() : displayList;
         notifyDataSetChanged();
     }
 
@@ -37,14 +37,14 @@ public class UserInfoAdapter extends RecyclerView.Adapter<UserInfoAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        UserInfoDetailsItem item = mDisplayList.get(position);
+        UserInfoDetailsItem item = displayList.get(position);
 
         holder.bind(item);
     }
 
     @Override
     public int getItemCount() {
-        return mDisplayList.size();
+        return displayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

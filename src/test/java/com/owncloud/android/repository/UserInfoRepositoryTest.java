@@ -6,7 +6,7 @@ import android.content.Context;
 import com.owncloud.android.lib.common.UserInfo;
 import com.owncloud.android.lib.common.operations.RemoteOperation;
 import com.owncloud.android.lib.common.operations.RemoteOperationResult;
-import com.owncloud.android.lib.resources.users.GetRemoteUserInfoOperation;
+import com.owncloud.android.lib.resources.users.GetUserInfoRemoteOperation;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +20,7 @@ import java.util.concurrent.Executor;
 import androidx.lifecycle.LiveData;
 
 import static java.util.Collections.singletonList;
+import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertSame;
@@ -32,8 +33,6 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class UserInfoRepositoryTest {
 
-    @Mock
-    private UserInfoDao userInfoDao;
     @Mock
     private Executor executor;
     @Mock
@@ -52,26 +51,26 @@ public class UserInfoRepositoryTest {
         UserInfo userInfoMock = new UserInfo();
         userInfoMock.displayName = "displayName";
 
-        LiveData userInfoResult = mock(LiveData.class);
-        when(userInfoDao.load(any())).thenReturn(userInfoResult);
+        // LiveData userInfoResult = mock(LiveData.class);
+        // when(userInfoDao.load(any())).thenReturn(userInfoResult);
 
         remoteOperationResult.setData(new ArrayList<>(singletonList(userInfoMock)));
         when(invoker.invoke(any(), any())).thenReturn(remoteOperationResult);
 
-        UserInfoRepository sut = new UserInfoRepository(userInfoDao, executor);
+        UserInfoRepository sut = new UserInfoRepository(executor);
 
         // test
         LiveData<com.owncloud.android.datamodel.UserInfo> userInfo = sut.getUserInfo(accountMock);
 
         // verify result
-        assertSame(userInfo, userInfoResult);
+        assertTrue(userInfo != null);
 
         // verify local dao call
         ArgumentCaptor<com.owncloud.android.datamodel.UserInfo> userInfoArgumentCaptor = ArgumentCaptor.forClass(com.owncloud.android.datamodel.UserInfo.class);
         // TODO re-enable verify(userInfoDao).save(userInfoArgumentCaptor.capture());
 
         assertThat(userInfoArgumentCaptor.getValue().getDisplayName(), is("displayName"));
-        verify(userInfoDao).load("accountName");
+        // verify(userInfoDao).load("accountName");
 
         // verify remote lib call
         ArgumentCaptor<Account> accountArgumentCaptor = ArgumentCaptor.forClass(Account.class);
@@ -79,6 +78,6 @@ public class UserInfoRepositoryTest {
         verify(invoker.invoke(accountArgumentCaptor.capture(), remoteOperationArgumentCaptor.capture()));
 
         assertSame(accountArgumentCaptor.getValue(), accountMock);
-        assertThat(remoteOperationArgumentCaptor.getValue(), is(instanceOf(GetRemoteUserInfoOperation.class)));
+        assertThat(remoteOperationArgumentCaptor.getValue(), is(instanceOf(GetUserInfoRemoteOperation.class)));
     }
 }

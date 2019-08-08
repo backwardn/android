@@ -129,8 +129,6 @@ public class UserInfoActivity extends FileActivity implements Injectable {
 
     @Inject UserInfoRepository userInfoRepository;
 
-    // TODO all operations in library: Remote prefix!
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Log_OC.v(TAG, "onCreate() start");
